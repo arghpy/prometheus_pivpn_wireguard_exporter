@@ -1,6 +1,6 @@
 # Prometheus PiVPN Wireguard Exporter
 
-[![Super-Linter](https://github.com/arghpy/prometheus_pivpn_wireguard_exporter/actions/workflows/manage_pull_requests.yaml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![Super-Linter](https://github.com/arghpy/prometheus_pivpn_wireguard_exporter/actions/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 A prometheus exporter for a default installation of wireguard via [PiVPN](https://github.com/pivpn/pivpn).
 
