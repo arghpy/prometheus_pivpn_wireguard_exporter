@@ -10,6 +10,8 @@ on:
       - labeled
       - unlabeled
 
+permissions: read-all
+
 jobs:
   linting:
     runs-on: ${{ vars.RUNNER }}
