@@ -17,8 +17,10 @@ I couldn't find such solution, so I created one.
 ### Prerequisites
 
 The following prerequisites are necessary in order to run:
+
 - a running wireguard server on linux
 - a folder containing the public keys of clients, structured like:
+
 ```text
 /etc/wireguard/keys
 ├── john_laptop_pub
@@ -37,25 +39,30 @@ Soon to come.
 ### Building
 
 In order to build the program, you will need:
+
 - [rust](https://www.rust-lang.org/tools/install)
 - [git](https://git-scm.com/downloads)
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/arghpy/prometheus_pivpn_wireguard_exporter.git
 ```
 
 2. Build for release and copy the resulting binary in `~/.cargo/bin/`:
+
 ```bash
 cargo install --path .
 ```
 
 3. Run as root the program:
+
 ```bash
 sudo /home/<user>/.cargo/bin/prometheus_pivpn_wireguard_exporter
 ```
 
 4. For additional information and options to pass, run:
+
 ```bash
 /home/<user>/.cargo/bin/prometheus_pivpn_wireguard_exporter --help
 ```
@@ -63,6 +70,7 @@ sudo /home/<user>/.cargo/bin/prometheus_pivpn_wireguard_exporter
 Optionally run it as a systemd service:
 
 1. Create the file **/etc/systemd/system/wireguard_exporter.service** with contents:
+
 ```ini
 [Unit]
 Description=Prometheus WireGuard Exporter
@@ -78,6 +86,7 @@ WantedBy=multi-user.target
 ```
 
 2. Start and enable the service:
+
 ```bash
 sudo systemctl enable --now wireguard_exporter.service
 ```
@@ -86,28 +95,34 @@ sudo systemctl enable --now wireguard_exporter.service
 
 The program will parse the public keys from the configuration directory **/etc/wireguard/keys**, creating an object
 of the form:
+
 ```json
 {
-    "key": "client_name",
+  "key": "client_name"
 }
 ```
+
 where:
+
 - **key** will be the contents of the file
 - **client_name** will be the name of the file, stripped of `_pub`
 
 For example, the file `/etc/wireguard/john_laptop_pub` with content `XXXXXXXXX` will be in the hashmap:
+
 ```json
 {
-    "XXXXXXXXX": "john_laptop",
+  "XXXXXXXXX": "john_laptop"
 }
 ```
 
 Next, it will do a dump on the wireguard interface specified (default `wg0`):
+
 ```bash
 wg show <interface> dump
 ```
 
 It will collect all the information and store it in an object like:
+
 ```json
 {
     [
@@ -143,6 +158,7 @@ This information will be processed in a prometheus format and will be served as
 a response on the specified port (default `9200`).
 
 The response will be like:
+
 ```text
 # HELP pivpn_sent_bytes_total Bytes sent to peer
 # TYPE pivpn_sent_bytes_total counter
