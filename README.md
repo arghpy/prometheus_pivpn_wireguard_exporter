@@ -41,7 +41,7 @@ Soon to come.
 In order to build the program, you will need:
 
 - [rust](https://www.rust-lang.org/tools/install)
-- [git](https://git-scm.com/downloads)
+- [Git](https://git-scm.com/downloads)
 
 1. Clone the repository:
 
