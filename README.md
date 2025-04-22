@@ -123,35 +123,31 @@ wg show <interface> dump
 
 It will collect all the information and store it in an object like:
 
-```json
-{
-    [
-        "last_handshake": {
-            "description": "Time of the last handshake since epoch",
-                "data": data,
-                "client": client,
-                "interface": interface,
-        },
-        "since_last_handshake": {
-            "description": "Seconds passed since the last handshake",
-            "data": now - data,
-            "client": client,
-            "interface": interface,
-        },
-        "received_bytes_total": {
-            "description": "Total bytes received from peer",
-            "data": data,
-            "client": client,
-            "interface": interface,
-        },
-        "sent_bytes_total": {
-            "description": "Total bytes sent to peer",
-            "data": data,
-            "client": client,
-            "interface": interface,
-        }
-    ],
-}
+```yaml
+clients:
+  - last_handshake:
+      description: "Time of the last handshake since epoch"
+      data: data
+      client: client
+      interface: interface
+
+    since_last_handshake:
+      description: "Seconds passed since the last handshake"
+      data: now - data
+      client: client
+      interface: interface
+
+    received_bytes_total:
+      description: "Total bytes received from peer"
+      data: data
+      client: client
+      interface: interface
+
+    sent_bytes_total:
+      description: "Total bytes sent to peer"
+      data: data
+      client: client
+      interface: interface
 ```
 
 This information will be processed in a prometheus format and will be served as
