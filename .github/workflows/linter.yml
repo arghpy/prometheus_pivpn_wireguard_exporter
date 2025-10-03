@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Start linting
-        uses: super-linter/super-linter@v8.1.0
+        uses: super-linter/super-linter@4e8a7c2bf106c4c766c816b35ec612638dc9b6b2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LOG_LEVEL: ERROR
